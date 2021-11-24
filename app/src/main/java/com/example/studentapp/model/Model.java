@@ -5,10 +5,12 @@ import java.util.List;
 
 public class Model {
     public static final Model model = new Model();
-    private List<Student> studentList;
+    private final List<Student> studentList;
 
     private Model() {
         studentList = new ArrayList<>();
+        studentList.add(new Student("Emil Kollek","201074127"));
+        studentList.add(new Student("Shimon Cohen","205723018"));
     }
 
     public List<Student> getStudentList() {
@@ -23,17 +25,17 @@ public class Model {
         studentList.remove(student);
     }
 
-    public void editStudent(String id,Student newStudentDetails){
+    public void editStudent(String uuid,String name,String id,String phone,String address,Boolean checked){
         Student student = studentList.stream()
-                .filter(s->s.getId().equals(id))
+                .filter(s->s.getUuid().equals(uuid))
                 .findFirst()
                 .orElse(null);
         if(student!=null){
-            student.setId(newStudentDetails.getId());
-            student.setName(newStudentDetails.getName());
-            student.setAddress(newStudentDetails.getAddress());
-            student.setPhoneNumber(newStudentDetails.getPhoneNumber());
-            student.setChecked(newStudentDetails.isChecked());
+            student.setId(id);
+            student.setName(name);
+            student.setAddress(address);
+            student.setPhoneNumber(phone);
+            student.setChecked(checked);
         }
     }
 }

@@ -40,7 +40,7 @@ public class StudentEditActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.edit_student_delete_btn).setOnClickListener(v->{
-            Model.model.getStudentList().remove(student);
+            Model.model.deleteStudent(student);
             finish();
         });
 
@@ -59,11 +59,7 @@ public class StudentEditActivity extends AppCompatActivity {
                 errorMsg.setText(validate);
                 return;
             }
-            student.setName(name);
-            student.setId(id);
-            student.setPhoneNumber(phone);
-            student.setAddress(address);
-            student.setChecked(checkBox.isChecked());
+            Model.model.editStudent(student.getUuid(),name,id,phone,address,checkBox.isChecked());
             finish();
         });
 
